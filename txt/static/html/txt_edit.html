@@ -1,0 +1,69 @@
+<div class="wrapper-comp-settings editor-with-buttons is-active" id="settings-tab">
+  <ul class="list-input settings-list">
+
+<!--Название-->
+    <li class="field comp-setting-entry is-set">
+      <div class="wrapper-comp-setting">
+        <label class="label setting-label" for="display_name">Название:</label>
+        <input class="input setting-input" name="display_name" id="display_name" value="{{display_name}}" type="text" />
+        <a href="#" class="button action-primary update_scenarios_repo"><i class="fa fa-refresh"></i> <i class="fa fa-github"></i></a>
+      </div>
+    </li>
+<!--Вопрос-->
+    <li class="field comp-setting-entry is-set">
+      <div class="wrapper-comp-setting">
+        <label class="label setting-label" for="question-area">Вопрос:</label>
+        <textarea id="question-area" class="input setting-input" rows=10 cols=50>{{question}}</textarea>
+      </div>
+    </li>
+<!--Правильный ответ-->
+      <li class="field comp-setting-entry is-set">
+        <div class="wrapper-comp-setting">
+          <label class="label setting-label" for="correct_answer">Правильный ответ:</label>
+          <input id="correct_answer" class="input setting-input" value="{{correct_answer}}" />
+        </div>
+      </li>
+<!--Максимальное кол-во баллов-->
+      <li class="field comp-setting-entry is-set">
+        <div class="wrapper-comp-setting">
+          <label class="label setting-label" for="weight">Максимальное количество баллов (0-100):</label>
+          <input class="input setting-input" name="weight" id="weight" value="{{weight}}" type="number" min="0" max="100" />
+        </div>
+      </li>
+<!--Обязательные слова-->
+      <li class="field comp-setting-entry is-set">
+        <div class="wrapper-comp-setting">
+          <label class="label setting-label" for="keywords-area">Обязательные слова:</label>
+          <textarea id="keywords-area" class="input setting-input" rows=10 cols=50>{{keywords}}</textarea>
+        </div>
+      </li>
+<!--Макс. кол-во попыток-->
+      <li class="field comp-setting-entry is-set">
+        <div class="wrapper-comp-setting">
+          <label class="label setting-label" for="max_attempts">Количество попыток:</label>
+          <input class="input setting-input" name="max_attempts" id="max_attempts" value="{{max_attempts}}" type="number" min="0" />
+        </div>
+     </li>
+<!--Порог проверки-->
+      <li class="field comp-setting-entry is-set">
+        <div class="wrapper-comp-setting">
+          <label class="label setting-label" for="grading_threshold-area">Нижний порог проверки:</label>
+          <textarea id="grading_threshold-area" class="input setting-input" rows=10 cols=50>{{grading_threshold}}</textarea>
+        </div>
+      </li>
+  </ul>
+
+
+  <div class="xblock-actions">
+    <ul>
+      <li class="action-item">
+        <a href="#" class="button action-primary save-button">Save</a>
+      </li>
+      <li class="action-item">
+        <a href="#" class="button cancel-button">Cancel</a>
+      </li>
+    </ul>
+  </div>
+
+
+</div>
