@@ -1,0 +1,36 @@
+<div class="txt_block">
+<h2 class="problem-header">{{display_name}}
+    <span class="txt_points">
+      {% if points %}
+           <p> Набрано баллов: <span class="points">{{points}}</span></p></span></h2>
+        {% else %}
+            (Max кoличество баллов: {{weight}})</span></h2>
+        {% endif %}
+
+    {% if is_course_staff %}
+    {% endif %}
+
+
+    {% if question != '' %}
+      <div class="txt_question">{{question|safe}}</div>
+    {% endif %}
+
+    <textarea name="answer" hidden="hidden" class="answer" type="text" rows=10 cols=50>{{answer}}</textarea>
+
+    <div class="xblock-actions" style="padding-top:2em;">
+      <ul>
+        <li class="action-item send_button" >
+          {% if past_due and answer_opportunity %}
+            <input class="check Check" type="button" value="Проверить">
+            {% if max_attempts %}
+                <p>Попыток: <span class="attempts">{{attempts}}</span> из {{max_attempts}}</p>
+            {% endif %}
+          {% elif past_due %}
+            <p><strong>Попытки исчерпаны</strong></p>
+          {% elif answer_opportunity %}
+            <p><strong>Время для ответа истекло</strong></p>
+          {% endif %}
+        </li>
+      </ul>
+    </div>
+</div>

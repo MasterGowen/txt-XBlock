@@ -4,7 +4,6 @@ import pytz
 import datetime
 import pkg_resources
 
-
 from django.template import Context, Template
 from django.utils.encoding import smart_text
 
@@ -243,6 +242,7 @@ def answer_opportunity(self):
         return False
     else:
         return True
+
 
 def _now():
     """
