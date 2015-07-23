@@ -18,7 +18,7 @@ class TxtXBlock(XBlock):
     display_name = String(
         display_name=u"Название",
         help=u"Название задания, которое увидят студенты.",
-        default=u'MultiEngine',
+        default=u'txt',
         scope=Scope.settings
     )
 
@@ -139,7 +139,7 @@ class TxtXBlock(XBlock):
 
     # views
 
-    def studio_view(self):
+    def studio_view(self, *args, **kwargs):
         """
         Отображение txtXBlock разработчику (CMS).
         """
@@ -173,7 +173,7 @@ class TxtXBlock(XBlock):
 
         return fragment
 
-    def student_view(self):
+    def student_view(self, *args, **kwargs):
         """
         Отображение txtXBlock студенту (LMS).
         """

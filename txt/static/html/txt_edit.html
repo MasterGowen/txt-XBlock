@@ -6,7 +6,6 @@
       <div class="wrapper-comp-setting">
         <label class="label setting-label" for="display_name">Название:</label>
         <input class="input setting-input" name="display_name" id="display_name" value="{{display_name}}" type="text" />
-        <a href="#" class="button action-primary update_scenarios_repo"><i class="fa fa-refresh"></i> <i class="fa fa-github"></i></a>
       </div>
     </li>
 <!--Вопрос-->
@@ -20,7 +19,7 @@
       <li class="field comp-setting-entry is-set">
         <div class="wrapper-comp-setting">
           <label class="label setting-label" for="correct_answer">Правильный ответ:</label>
-          <input id="correct_answer" class="input setting-input" value="{{correct_answer}}" />
+          <textarea id="correct_answer" class="input setting-input" rows=10 cols=50>{{correct_answer}}</textarea>
         </div>
       </li>
 <!--Максимальное кол-во баллов-->
@@ -48,7 +47,7 @@
       <li class="field comp-setting-entry is-set">
         <div class="wrapper-comp-setting">
           <label class="label setting-label" for="grading_threshold-area">Нижний порог проверки:</label>
-          <textarea id="grading_threshold-area" class="input setting-input" rows=10 cols=50>{{grading_threshold}}</textarea>
+          <input class="input setting-input" name="grading_threshold" id="grading_threshold-area" value="{{grading_threshold}}" type="number" min="0" />
         </div>
       </li>
   </ul>

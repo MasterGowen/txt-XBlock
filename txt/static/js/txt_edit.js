@@ -1,12 +1,18 @@
 function TxtXBlockEdit(runtime, element) {
 
-var question_editor = CodeMirror.fromTextArea(elementDOM.querySelector('#question-area'), {
+var question_editor = CodeMirror.fromTextArea(element[0].querySelector('#question-area'), {
 		mode: "text/html",
 		tabMode: "indent",
 		lineNumbers: true
 	});
 
-var keywords_editor = CodeMirror.fromTextArea(elementDOM.querySelector('#question-area'), {
+var correct_answer_editor = CodeMirror.fromTextArea(element[0].querySelector('#correct_answer'), {
+		mode: "text/html",
+		tabMode: "indent",
+		lineNumbers: true
+	});
+
+var keywords_editor = CodeMirror.fromTextArea(element[0].querySelector('#keywords-area'), {
 		mode: "text/html",
 		tabMode: "indent",
 		lineNumbers: true
@@ -18,10 +24,10 @@ var keywords_editor = CodeMirror.fromTextArea(elementDOM.querySelector('#questio
 				display_name: $(element).find('input[name=display_name]').val(),
 				question: question_editor.getValue(),
 				weight: $(element).find('input[name=weight]').val(),
-				correct_answer: $(element).find('input[id=correct_answer]').val(),
+				correct_answer: correct_answer_editor.getValue(),
 				max_attempts: $(element).find('input[name=max_attempts]').val(),
 				keywords: keywords_editor.getValue(),
-                grading_threshold: $(element).find('textarea[id=grading_threshold-area]').val(),
+                grading_threshold: $(element).find('input[name=grading_threshold]').val(),
 			};
 
 		$.post(handlerUrl, JSON.stringify(data)).done(function(response) {
