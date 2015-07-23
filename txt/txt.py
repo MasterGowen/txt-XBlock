@@ -52,6 +52,12 @@ class TxtXBlock(XBlock):
         scope=Scope.settings
     )
 
+    attempts = Integer(
+        display_name=u"Количество сделанных попыток",
+        default=0,
+        scope=Scope.user_state
+    )
+
     points = Integer(
         display_name=u"Количество баллов студента",
         default=None,
@@ -138,13 +144,85 @@ class TxtXBlock(XBlock):
         """
         Отображение txtXBlock разработчику (CMS).
         """
-        pass
+        context = {
+            "display_name": self.display_name,
+            "weight": self.weight,
+            "question": self.question,
+            "correct_answer": self.correct_answer,
+            "answer": self.answer,
+            "max_attempts": self.max_attempts,
+        }
+
+        fragment = Fragment()
+        fragment.add_content(
+            render_template(
+                'static/html/txt_edit.html',
+                context
+            )
+        )
+
+        js_urls = (
+            "static/js/txt_edit.js",
+        )
+
+        css_urls = (
+            'static/css/txt.css',
+        )
+
+        self.load_resources(js_urls, css_urls, fragment)
+        fragment.initialize_js('TxtXBlockEdit')
+
+        return fragment
 
     def student_view(self):
         """
         Отображение txtXBlock студенту (LMS).
         """
-        pass
+
+        context = {
+            "display_name": self.display_name,
+            "weight": self.weight,
+            "question": self.question,
+            "correct_answer": self.correct_answer,
+            "answer": self.answer,
+            "attempts": self.attempts,
+        }
+
+        if self.max_attempts != 0:
+            context["max_attempts"] = self.max_attempts
+
+        if self.past_due():
+            context["past_due"] = True
+
+        if self.answer != '{}':
+            context["points"] = self.points
+
+        if answer_opportunity(self):
+            context["answer_opportunity"] = True
+
+        if self.is_course_staff() is True or self.is_instructor() is True:
+            context['is_course_staff'] = True
+
+        fragment = Fragment()
+        fragment.add_content(
+            render_template(
+                'static/html/txt.html',
+                context
+            )
+        )
+
+        js_urls = (
+            'static/js/txt.js',
+        )
+
+        css_urls = (
+            'static/css/txt.css',
+        )
+
+        self.load_resources(js_urls, css_urls, fragment)
+
+        fragment.initialize_js('TxtXBlock')
+        return fragment
 
     # handlers
 
@@ -156,6 +234,15 @@ class TxtXBlock(XBlock):
     def student_submit(self, data, suffix=''):
         pass
 
+
+def answer_opportunity(self):
+    """
+    Возможность ответа (если количество сделанное попыток меньше заданного).
+    """
+    if self.max_attempts <= self.attempts and self.max_attempts != 0:
+        return False
+    else:
+        return True
 
 def _now():
     """
