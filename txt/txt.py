@@ -79,7 +79,7 @@ class TxtXBlock(XBlock):
     grading_threshold = Integer(
         display_name=u"Количество баллов студента",
         default=None,
-        scope=Scope.user_state
+        scope=Scope.settings
     )
 
     has_score = True
@@ -227,6 +227,14 @@ class TxtXBlock(XBlock):
 
     @XBlock.json_handler
     def studio_submit(self, data, suffix=''):
+        self.display_name = data.get('display_name')
+        self.question = data.get('question')
+        self.weight = data.get('weight')
+        self.correct_answer = data.get('correct_answer')
+        self.max_attempts = data.get('max_attempts')
+        self.keywords = data.get('keywords')
+        self.grading_threshold = data.get('grading_threshold')
+
         return {'result': 'success'}
 
     @XBlock.json_handler
